@@ -106,17 +106,28 @@ public class Agenda {
 //        return true;
 //    }
 
-    public void removeContact(Contact c) {
-        boolean found = false;
-        for (int i = 0; i < contacts.size() && found; i++) {
-            if (contacts.get(i).equals(c)) {
-                contacts.remove(c);
-                found = true;
-            }
+    public void removeContact(Path p, Contact searchContact) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(p);
+        try {
+            Files.delete(p);
+        } catch (NoSuchFileException x) {
+            System.err.format("%s: no such" + " file or directory%n", p);
+        } catch (DirectoryNotEmptyException x) {
+            System.err.format("%s not empty%n", p);
+        } catch (IOException e) {
+            // File permission problems are caught here.
+            System.err.println(e);
         }
-        if (!found) {
-            System.out.println("contact has not been deleted");
-        }
+//        boolean found = false;
+//        for (int i = 0; i < contacts.size() && found; i++) {
+//            if (contacts.get(i).equals(c)) {
+//                contacts.remove(c);
+//                found = true;
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("contact has not been deleted");
+//        }
     }
-
 }

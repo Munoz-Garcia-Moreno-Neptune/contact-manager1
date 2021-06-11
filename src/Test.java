@@ -83,7 +83,7 @@ public class Test {
                         name = scanner.nextLine();
                         number = scanner.nextLine();
                         c = new Contact(name, number);
-                        phonebook.removeContact(c);
+                        phonebook.removeContact(txt, c);
                         break;
 //                    case 6:
 //                        System.out.println("There are " + phonebook.fullAgenda() + "contacts");
