@@ -1,7 +1,30 @@
+import java.io.IOException;
 import java.util.Scanner;
+import java.nio.file.*;
 
 public class Test {
     public static void main(String[] args) {
+
+        Path directoryPath = Paths.get("src/contactList");
+        try {
+            if (Files.notExists(directoryPath)) {
+                Files.createDirectory(directoryPath);
+            } else {
+                System.out.println("already created");
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        Path txt = Paths.get(String.valueOf(directoryPath), "contacts.txt");
+        try {
+            if (Files.notExists(txt)) {
+                Files.createFile(txt);
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         boolean goOut = false;
@@ -18,7 +41,7 @@ public class Test {
             System.out.println("4. Exist contact");
             System.out.println("5. Delete contact");
             System.out.println("6. Agenda is full?");
-            System.out.println("7 Contact available");
+            System.out.println("7. Contact available");
             System.out.println("Exit!");
             try {
                 System.out.println("Enter one of the options");
@@ -51,9 +74,9 @@ public class Test {
                         }
                         break;
                     case 5:
-                        System.out.println("Enter a name");
+                        System.out.println("Enter a name");// remove contact only requires name?
                         name = scanner.next();
-                        c = new Contact(name, number);
+                        c = new Contact(name);
                         phonebook.removeContact(c);
                         break;
                     case 6:
@@ -69,7 +92,11 @@ public class Test {
                     case 8:
                         goOut = true;
                         break;
+                    default:
+                        System.out.println("default case change later");
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

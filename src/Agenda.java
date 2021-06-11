@@ -24,7 +24,7 @@ public class Agenda {
                 }
             }
             if (found) {
-                System.out.println("Your add a new contact!");
+                System.out.println("You added a new contact!");
             } else {
                 System.out.println("We could not add a new contact :( ");
             }
