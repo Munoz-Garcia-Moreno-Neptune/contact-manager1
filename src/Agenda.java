@@ -2,6 +2,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Agenda {
     public ArrayList<Contact> contacts = new ArrayList<>();
@@ -15,11 +17,11 @@ public class Agenda {
 //        this.contacts = new Contact[size];
 //    }
 
-    public void addContact(Contact c,Path p) {
+    public void addContact(Contact c, Path p) {
 
         contacts.add(c);
         String contactInfo;
-        contactInfo = c.getName() + " "+  c.getNumber();
+        contactInfo = c.getName() + " " + c.getNumber();
         contactStrings.add(contactInfo);
 
         if (existContact(c)) {
@@ -59,33 +61,41 @@ public class Agenda {
     }
 
     public void contactList() {
-        File file = new File("src/contactList/contacts.txt");
+        Path fileTxt = Paths.get("src/contactList/contacts.txt");
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-        } catch(IOException ex){
-            ex.printStackTrace();
+        List<String> listOfContacts = new ArrayList<String>();
+        try{
+            listOfContacts=  Files.readAllLines(fileTxt);
+        }catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+        for (String contacts: listOfContacts) {
+            System.out.println(contacts);
         }
 
+    }
 
-        for (int i = 0; i < contacts.size(); i++) {
-                System.out.println(contactStrings.get(i));
+
+    public void searchName(Path path, String findContact) throws IOException {
+        Scanner scan = new Scanner(path);
+        while(scan.hasNext()) {
+            String line = scan.nextLine().toLowerCase();
+            if (line.contains(findContact.toLowerCase(Locale.ROOT))) {
+                System.out.println(line);
             }
-        }
-
-
-    public void searchName(String name) {
-        boolean found = false;
-        for (int i = 0; i < contacts.size() && !found; i++) {
-            if (contacts.get(i).getName().equalsIgnoreCase(name)) {
-                System.out.println("Your number is: " + contacts.get(i).getNumber());
-                found = true;
-            }
-        }
-        if (!found) {
-            System.out.println("contact not found");
         }
     }
+//        boolean found = false;
+//        for (int i = 0; i < contacts.size() && !found; i++) {
+//            if (contacts.get(i).getName().equalsIgnoreCase(name)) {
+//                System.out.println("Your number is: " + contacts.get(i).getNumber());
+//                found = true;
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("contact not found");
+//        }
+
 
 //    public boolean fullAgenda() {
 //        for (int i = 0; i < contacts.so; i++) {

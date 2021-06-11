@@ -65,7 +65,7 @@ public class Test {
                         System.out.println("Enter a name");
                         scanner.nextLine();
                         name = scanner.nextLine();
-                        phonebook.searchName(name);
+                        phonebook.searchName(txt,name);
                         break;
                     case 4:
                         System.out.println("Enter a name");
