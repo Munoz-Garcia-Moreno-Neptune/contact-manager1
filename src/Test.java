@@ -40,16 +40,17 @@ public class Test {
             System.out.println("3. Search contacts");
             System.out.println("4. Exist contact");
             System.out.println("5. Delete contact");
-            System.out.println("6. Agenda is full?");
-            System.out.println("7. Contact available");
-            System.out.println("Exit!");
+//            System.out.println("6. Agenda is full?");
+//            System.out.println("7. Contact available");
+//            System.out.println("Exit!");
             try {
                 System.out.println("Enter one of the options");
                 option = scanner.nextInt();
                 switch (option) {
                     case 1:
                         System.out.println("Enter a name");
-                        name = scanner.next();
+                        name = scanner.nextLine();
+                        scanner.nextLine();
                         System.out.println("Enter a number");
                         number = scanner.nextInt();
                         c = new Contact(name, number);
@@ -60,12 +61,12 @@ public class Test {
                         break;
                     case 3:
                         System.out.println("Enter a name");
-                        name = scanner.next();
+                        name = scanner.nextLine();
                         phonebook.searchName(name);
                         break;
                     case 4:
                         System.out.println("Enter a name");
-                        name = scanner.next();
+                        name = scanner.nextLine();
                         c = new Contact(name, 0);
                         if (phonebook.existContact(c)) {
                             System.out.println("Exist this contact");
@@ -75,7 +76,7 @@ public class Test {
                         break;
                     case 5:
                         System.out.println("Enter a name");// remove contact only requires name?
-                        name = scanner.next();
+                        name = scanner.nextLine();
                         c = new Contact(name);
                         phonebook.removeContact(c);
                         break;

@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+
 public class Contact {
     private String name;
     private int number;
+    private ArrayList<String> contacts;
+
 
     public Contact(String name, int number) {
         this.name = name;

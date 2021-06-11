@@ -10,6 +10,8 @@ public class Agenda {
     }
 
     public void addContact(Contact c) {
+
+
         if (existContact(c)) {
             System.out.println("This contact already exists");
         } else if (fullAgenda()) {
