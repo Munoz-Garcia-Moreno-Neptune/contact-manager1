@@ -2,18 +2,20 @@ import java.util.ArrayList;
 
 public class Contact {
     private String name;
-    private int number;
+    private String number;
     private ArrayList<String> contacts;
 
 
-    public Contact(String name, int number) {
+    public Contact(String name, String number) {
         this.name = name;
         this.number = number;
     }
-    public Contact(String name) {
-        this.name = name;
-        this.number = 0;
-    }
+
+//    public Contact(String name) {
+//        this.name = name;
+//
+//
+//    }
 
     public String getName() {
         return name;
@@ -23,11 +25,11 @@ public class Contact {
         this.name = name;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

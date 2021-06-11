@@ -31,7 +31,7 @@ public class Test {
         int option;
         Agenda phonebook = new Agenda(3);
         String name;
-        int number;
+        String number;
         Contact c;
 
         while (!goOut) {
@@ -52,7 +52,7 @@ public class Test {
                         name = scanner.nextLine();
                         scanner.nextLine();
                         System.out.println("Enter a number");
-                        number = scanner.nextInt();
+                        number = scanner.nextLine();
                         c = new Contact(name, number);
                         phonebook.addContact(c);
                         break;
@@ -67,7 +67,8 @@ public class Test {
                     case 4:
                         System.out.println("Enter a name");
                         name = scanner.nextLine();
-                        c = new Contact(name, 0);
+                        number = scanner.nextLine();
+                        c = new Contact(name, number);
                         if (phonebook.existContact(c)) {
                             System.out.println("Exist this contact");
                         } else {
@@ -77,7 +78,8 @@ public class Test {
                     case 5:
                         System.out.println("Enter a name");// remove contact only requires name?
                         name = scanner.nextLine();
-                        c = new Contact(name);
+                        number = scanner.nextLine();
+                        c = new Contact(name, number);
                         phonebook.removeContact(c);
                         break;
                     case 6:
