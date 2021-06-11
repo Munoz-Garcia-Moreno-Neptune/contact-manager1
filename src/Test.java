@@ -29,7 +29,7 @@ public class Test {
         scanner.useDelimiter("\n");
         boolean goOut = false;
         int option;
-        Agenda phonebook = new Agenda(3);
+        Agenda phonebook = new Agenda();
         String name;
         String number;
         Contact c;
@@ -42,19 +42,21 @@ public class Test {
             System.out.println("5. Delete contact");
 //            System.out.println("6. Agenda is full?");
 //            System.out.println("7. Contact available");
-//            System.out.println("Exit!");
+            System.out.println("6.Exit!");
             try {
                 System.out.println("Enter one of the options");
                 option = scanner.nextInt();
                 switch (option) {
                     case 1:
                         System.out.println("Enter a name");
-                        name = scanner.nextLine();
                         scanner.nextLine();
+                        name = scanner.nextLine();
+//                        scanner.nextLine();
                         System.out.println("Enter a number");
                         number = scanner.nextLine();
                         c = new Contact(name, number);
-                        phonebook.addContact(c);
+
+                        phonebook.addContact(c, txt);
                         break;
                     case 2:
                         phonebook.contactList();
@@ -82,17 +84,17 @@ public class Test {
                         c = new Contact(name, number);
                         phonebook.removeContact(c);
                         break;
+//                    case 6:
+//                        System.out.println("There are " + phonebook.fullAgenda() + "contacts");
+//                        break;
+//                    case 7:
+//                        if (phonebook.fullAgenda()) {
+//                            System.out.println("Agenda is full");
+//                        } else {
+//                            System.out.println("You can still add contacts");
+//                        }
+//                        break;
                     case 6:
-                        System.out.println("There are " + phonebook.fullAgenda() + "contacts");
-                        break;
-                    case 7:
-                        if (phonebook.fullAgenda()) {
-                            System.out.println("Agenda is full");
-                        } else {
-                            System.out.println("You can still add contacts");
-                        }
-                        break;
-                    case 8:
                         goOut = true;
                         break;
                     default:
