@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +59,17 @@ public class Agenda {
     }
 
     public void contactList() {
+        File file = new File("src/contactList/contacts.txt");
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+        } catch(IOException ex){
+            ex.printStackTrace();
+        }
+
+
         for (int i = 0; i < contacts.size(); i++) {
-                System.out.println(contacts.get(i));
+                System.out.println(contactStrings.get(i));
             }
         }
 

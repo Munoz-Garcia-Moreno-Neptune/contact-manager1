@@ -63,6 +63,7 @@ public class Test {
                         break;
                     case 3:
                         System.out.println("Enter a name");
+                        scanner.nextLine();
                         name = scanner.nextLine();
                         phonebook.searchName(name);
                         break;
