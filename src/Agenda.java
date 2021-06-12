@@ -1,3 +1,5 @@
+import com.sun.source.tree.WhileLoopTree;
+
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -106,19 +108,48 @@ public class Agenda {
 //        return true;
 //    }
 
-    public void removeContact(Path p, Contact searchContact) throws IOException {
+    public void removeContact(Path p, String findContact) throws IOException {
         Scanner scanner = new Scanner(System.in);
         Scanner scan = new Scanner(p);
-        try {
-            Files.delete(p);
-        } catch (NoSuchFileException x) {
-            System.err.format("%s: no such" + " file or directory%n", p);
-        } catch (DirectoryNotEmptyException x) {
-            System.err.format("%s not empty%n", p);
-        } catch (IOException e) {
-            // File permission problems are caught here.
-            System.err.println(e);
+        int i = 0;
+        while (scan.hasNext()) {
+            String contact = scan.nextLine().toLowerCase();
+            i++;
+            if (contact.contains(findContact)) {
+                System.out.println("you selected " + contact + "\n");
+                System.out.println("are you sure you want to delete? Y/N");
+                String response = scanner.next();
+                if (response.equalsIgnoreCase("y")) {
+                    List<String> listOfContacts = new ArrayList<String>();
+                    try{
+                        listOfContacts = Files.readAllLines(p);
+                    }catch(IOException ioe){
+                        ioe.printStackTrace();
+                    }
+                    listOfContacts.remove(i - 1);
+                    try{
+                        Files.write(p, listOfContacts);
+                    }catch(IOException ioe){
+                        ioe.printStackTrace();
+                    }
+                }else{
+                    System.out.println("\nThe contact was not deleted.\n");
+                }
+                }
+            }
         }
+
+
+//        try {
+//            Files.delete(p);
+//        } catch (NoSuchFileException x) {
+//            System.err.format("%s: no such" + " file or directory%n", p);
+//        } catch (DirectoryNotEmptyException x) {
+//            System.err.format("%s not empty%n", p);
+//        } catch (IOException e) {
+//            // File permission problems are caught here.
+//            System.err.println(e);
+//        }
 //        boolean found = false;
 //        for (int i = 0; i < contacts.size() && found; i++) {
 //            if (contacts.get(i).equals(c)) {
@@ -130,4 +161,4 @@ public class Agenda {
 //            System.out.println("contact has not been deleted");
 //        }
     }
-}
+

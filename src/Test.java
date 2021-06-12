@@ -75,15 +75,16 @@ public class Test {
                         if (phonebook.existContact(c)) {
                             System.out.println("Exist this contact");
                         } else {
-                            System.out.println("This contact no Exist");
+                            System.out.println("This contact does not Exist");
                         }
                         break;
                     case 5:
                         System.out.println("Enter a name");// remove contact only requires name?
+                        scanner.nextLine();
                         name = scanner.nextLine();
                         number = scanner.nextLine();
                         c = new Contact(name, number);
-                        phonebook.removeContact(txt, c);
+                        phonebook.removeContact(txt, c.getName() + c.getNumber());
                         break;
 //                    case 6:
 //                        System.out.println("There are " + phonebook.fullAgenda() + "contacts");
