@@ -11,11 +11,11 @@ public class Contact {
         this.number = number;
     }
 
-//    public Contact(String name) {
-//        this.name = name;
-//
-//
-//    }
+    public Contact(String fileEntry) {
+        String[] data = fileEntry.split(" | ");
+        this.name = data[0];
+        this.number = data[data.length - 1];
+    }
 
     public String getName() {
         return name;
@@ -45,6 +45,9 @@ public class Contact {
 
     public String toString() {
         return "Name: " + name + ", Number: " + number;
+    }
+    public String toFileString() {
+        return name + " | " + number;
     }
 }
 //    private String name;

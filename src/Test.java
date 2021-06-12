@@ -4,8 +4,8 @@ import java.nio.file.*;
 
 public class Test {
     public static void main(String[] args) {
-
-        Path directoryPath = Paths.get("src/contactList");
+        String contactFilePath = "src/contactList";
+        Path directoryPath = Paths.get(contactFilePath);
         try {
             if (Files.notExists(directoryPath)) {
                 Files.createDirectory(directoryPath);
@@ -15,7 +15,7 @@ public class Test {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        Path txt = Paths.get(String.valueOf(directoryPath), "contacts.txt");
+        Path txt = Paths.get(contactFilePath, "contacts.txt");
         try {
             if (Files.notExists(txt)) {
                 Files.createFile(txt);
@@ -24,26 +24,21 @@ public class Test {
             ioe.printStackTrace();
         }
 
-
-        Scanner scanner = new Scanner(System.in);
-        scanner.useDelimiter("\n");
         boolean goOut = false;
         int option;
         Agenda phonebook = new Agenda();
         String name;
         String number;
-        Contact c;
 
         while (!goOut) {
             System.out.println("1. Add contact");
             System.out.println("2. View contacts");
             System.out.println("3. Search contacts");
-            System.out.println("4. Exist contact");
-            System.out.println("5. Delete contact");
-//            System.out.println("6. Agenda is full?");
-//            System.out.println("7. Contact available");
-            System.out.println("6.Exit!");
+            System.out.println("4. Delete contact");
+            System.out.println("5.Exit!");
             try {
+                Scanner scanner = new Scanner(System.in);
+                scanner.useDelimiter("\n");
                 System.out.println("Enter one of the options");
                 option = scanner.nextInt();
                 switch (option) {
@@ -54,9 +49,7 @@ public class Test {
 //                        scanner.nextLine();
                         System.out.println("Enter a number");
                         number = scanner.nextLine();
-                        c = new Contact(name, number);
-
-                        phonebook.addContact(c, txt);
+                        phonebook.addContact(new Contact(name, number), txt);
                         break;
                     case 2:
                         phonebook.contactList();
@@ -69,34 +62,12 @@ public class Test {
                         break;
                     case 4:
                         System.out.println("Enter a name");
-                        name = scanner.nextLine();
-                        number = scanner.nextLine();
-                        c = new Contact(name, number);
-                        if (phonebook.existContact(c)) {
-                            System.out.println("Exist this contact");
-                        } else {
-                            System.out.println("This contact does not Exist");
-                        }
-                        break;
-                    case 5:
-                        System.out.println("Enter a name");// remove contact only requires name?
                         scanner.nextLine();
                         name = scanner.nextLine();
-                        number = scanner.nextLine();
-                        c = new Contact(name, number);
-                        phonebook.removeContact(txt, c.getName() + c.getNumber());
+                        phonebook.removeContact(name);
                         break;
-//                    case 6:
-//                        System.out.println("There are " + phonebook.fullAgenda() + "contacts");
-//                        break;
-//                    case 7:
-//                        if (phonebook.fullAgenda()) {
-//                            System.out.println("Agenda is full");
-//                        } else {
-//                            System.out.println("You can still add contacts");
-//                        }
-//                        break;
-                    case 6:
+                    case 5:
+                        phonebook.saveContacts();
                         goOut = true;
                         break;
                     default:
